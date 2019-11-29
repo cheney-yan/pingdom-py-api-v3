@@ -24,7 +24,7 @@ https://github.com/cheney-yan/pingdom-py-api-v3
 # ===============================================================================
 
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __project_url__ = "https://github.com/cheney-yan/pingdom-py-api-v3"
 
 import sys
@@ -126,7 +126,8 @@ class Client(object):
     for unused_key in ('id', 'created', 'hostname', 'lasttesttime', 'lastresponsetime', 'status'):
       detail.pop(unused_key, None)
     if 'tags' in detail:
-      detail['tags'] = [t['name'] for t in detail['tags']]
+      detail['tags'] = ','.join([t['name'] for t in detail['tags']])
+
     return self.create_check(detail)
 
   def delete_check(self, check_id):

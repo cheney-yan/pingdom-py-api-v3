@@ -22,6 +22,8 @@ setup(
     version=pingdomv3.__version__,
     description="Pingdom V3 API for python3",
     long_description=read("README.md"),
+    long_description_content_type='text/markdown',
+    python_requires='>=3',
     author=author,
     author_email=author_email,
     maintainer=author,
