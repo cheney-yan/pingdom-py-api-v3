@@ -24,7 +24,7 @@ https://github.com/cheney-yan/pingdom-py-api-v3
 # ===============================================================================
 
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 __project_url__ = "https://github.com/cheney-yan/pingdom-py-api-v3"
 
 import sys
@@ -123,7 +123,7 @@ class Client(object):
     detail = self.get_check(check_id)
     detail['host'] = str(detail.get('hostname'))
     detail['name'] = 'Copy Of %s' % detail.get('name')
-    for unused_key in ('id', 'created', 'hostname', 'lasttesttime', 'lastresponsetime', 'status'):
+    for unused_key in ('id', 'created', 'hostname', 'lasttesttime', 'lastresponsetime', 'status', 'lasterrortime'):
       detail.pop(unused_key, None)
     if 'tags' in detail:
       detail['tags'] = ','.join([t['name'] for t in detail['tags']])
