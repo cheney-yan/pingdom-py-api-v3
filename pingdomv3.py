@@ -24,7 +24,7 @@ https://github.com/cheney-yan/pingdom-py-api-v3
 # ===============================================================================
 
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 __project_url__ = "https://github.com/cheney-yan/pingdom-py-api-v3"
 
 import sys
@@ -96,8 +96,11 @@ class Client(object):
                  showencryption: bool = None,
                  include_tags: bool = None,
                  include_severity: bool = None,
-                 tags: [str] = None
+                 tags: str = None
                  ):
+    """
+    https://docs.pingdom.com/api/#tag/Checks/paths/~1checks/get
+    """
     params = {}
     if limit is not None:
       params['limit'] = limit
@@ -109,8 +112,8 @@ class Client(object):
       params['include_tags'] = include_tags
     if include_severity is not None:
       params['include_severity'] = include_severity
-    if tags is not None:
-      params['tags'] = ','.join(tags)
+    if tags:
+      params['tags'] = tags
     return self.api.send('get', "checks", params=params)['checks']
 
   def get_check(self, check_id):
@@ -118,6 +121,9 @@ class Client(object):
 
   def create_check(self, check_detail):
     return self.api.send('POST', "checks", data=check_detail)['check']
+
+  def update_check(self, check_id, check_detail):
+    return self.api.send('PUT', f"checks/{check_id}", data=check_detail)['check']
 
   def duplicate_check(self, check_id):
     detail = self.get_check(check_id)
