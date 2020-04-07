@@ -24,7 +24,7 @@ https://github.com/cheney-yan/pingdom-py-api-v3
 # ===============================================================================
 
 
-__version__ = "0.0.4"
+__version__ = "0.0.5"
 __project_url__ = "https://github.com/cheney-yan/pingdom-py-api-v3"
 
 import sys
@@ -123,7 +123,7 @@ class Client(object):
     return self.api.send('POST', "checks", data=check_detail)['check']
 
   def update_check(self, check_id, check_detail):
-    return self.api.send('PUT', f"checks/{check_id}", data=check_detail)['check']
+    return self.api.send('PUT', f"checks/{check_id}", data=check_detail)
 
   def duplicate_check(self, check_id):
     detail = self.get_check(check_id)
